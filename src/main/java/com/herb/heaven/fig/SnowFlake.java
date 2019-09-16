@@ -70,4 +70,16 @@ public class SnowFlake {
         }
         return timestamp;
     }
+
+    public long getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(long workId) {
+        this.workId = workId;
+    }
+
+    public long getMaxWorkId() {
+        return maxWorkId;
+    }
 }
