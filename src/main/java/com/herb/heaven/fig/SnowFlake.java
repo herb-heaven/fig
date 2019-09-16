@@ -2,7 +2,7 @@ package com.herb.heaven.fig;
 
 public class SnowFlake {
 
-
+    private String id;
 
     /**
      * 工作 ID 需保持分布式唯一性
@@ -42,6 +42,11 @@ public class SnowFlake {
     private final long epochBits = workerIdBits + sequenceBits;
 
 
+    public SnowFlake(long workId,String id){
+        this.workId = workId;
+        this.id = id;
+    }
+
     public synchronized long nextId(){
         Long currentTimestamp = System.currentTimeMillis();
         if(currentTimestamp < lastTimestamp){
@@ -71,15 +76,11 @@ public class SnowFlake {
         return timestamp;
     }
 
-    public long getWorkId() {
-        return workId;
-    }
-
-    public void setWorkId(long workId) {
-        this.workId = workId;
-    }
-
     public long getMaxWorkId() {
         return maxWorkId;
+    }
+
+    public String getId() {
+        return id;
     }
 }
