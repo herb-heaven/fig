@@ -17,12 +17,10 @@ public class FigWorkerValidator implements Runnable{
     public void run() {
         long lastTimestamp = figWorker.getWorkIdTimestamp(workId);
         long currentTimestamp = System.currentTimeMillis();
-        if(lastTimestamp > currentTimestamp){
-            lastTimestamp = lastTimestamp + delay;
-        }else{
+        if(lastTimestamp <= currentTimestamp){
             lastTimestamp = currentTimestamp + 1000*60*60*24*30;//续期一个月
+            figWorker.setWorkIdTimestamp(workId,lastTimestamp);
         }
-        figWorker.setWorkIdTimestamp(workId,lastTimestamp);
     }
 
     public void enableValidator(){
