@@ -10,7 +10,7 @@ public interface FigWorker {
 
     Map<Long,Long> getAllIds();
 
-    void putAllIds(Map<Long,Long> map);
+    void removeWorkId(long workId);
 
     default long createWorkId(){
         Map<Long,Long> map = getAllIds();
@@ -18,7 +18,7 @@ public interface FigWorker {
         long timetamp = System.currentTimeMillis();
         for(Map.Entry<Long,Long> entry : map.entrySet()){
             if(timetamp > entry.getValue()){
-                map.remove(entry.getKey(),entry.getValue());
+                removeWorkId(entry.getKey());
             }else{
                 if(entry.getKey() > workId){
                     workId = entry.getKey();
@@ -27,8 +27,7 @@ public interface FigWorker {
         }
         workId = workId +1;
         timetamp = timetamp + 30*60*1000;
-        map.put(workId,timetamp);
-        putAllIds(map);
+        setWorkIdTimestamp(workId,timetamp);
         return workId;
     }
 }
