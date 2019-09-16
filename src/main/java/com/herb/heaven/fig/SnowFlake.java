@@ -83,4 +83,8 @@ public class SnowFlake {
     public String getId() {
         return id;
     }
+
+    public long getWorkId() {
+        return workId;
+    }
 }

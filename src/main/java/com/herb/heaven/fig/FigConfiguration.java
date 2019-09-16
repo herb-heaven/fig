@@ -18,4 +18,11 @@ public class FigConfiguration {
         return new SnowFlake(figWorker.createWorkId(),id);
     }
 
+    @Bean
+    public FigWorkerValidator figWorkerValidator(SnowFlake snowFlake){
+        FigWorkerValidator figWorkerValidator = new FigWorkerValidator(snowFlake.getWorkId(),figWorker);
+        figWorkerValidator.enableValidator();
+        return figWorkerValidator;
+    }
+
 }

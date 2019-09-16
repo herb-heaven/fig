@@ -4,7 +4,9 @@ import java.util.Map;
 
 public interface FigWorker {
 
-    long setId(String id);
+    long setWorkIdTimestamp(long workId,long timestamp);
+
+    long getWorkIdTimestamp(long workId);
 
     Map<Long,Long> getAllIds();
 
